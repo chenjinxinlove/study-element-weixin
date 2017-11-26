@@ -1,0 +1,40 @@
+:root {
+    --column-width: 274px;
+}
+
+:local
+.container {
+    display: flex;
+    height: calc(100vh - 60px);
+    justify-content: space-between;
+    padding: 30px 17px 0;
+}
+
+:local
+.notfound {
+    justify-content: center;
+    align-items: center;
+
+    & h1 {
+        font-family: 'Roboto';
+        font-weight: 100;
+        color: rgba(0, 0, 0, .8);
+        letter-spacing: 2px;
+        word-spacing: 4px;  
+    }
+}
+
+:local
+.inner {
+    text-align: center;
+
+    & img {
+        width: 220px;
+        margin-bottom: 70px;
+    }
+}
+
+:local
+.column {
+    width: var(--column-width);
+}

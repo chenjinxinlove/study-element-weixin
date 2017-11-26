@@ -1,10 +1,7 @@
-
-import home from './home';
 import contacts from './contacts';
-import settings from './settings';
+import session from './session';
 
 export default {
-    home,
     contacts,
-    settings,
+    session
 };

@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx';
-import axios form 'axios';
+import axios from 'axios';
 import pinyin from 'han';
 
 import storage from 'utils/storage';
@@ -68,4 +68,21 @@ class Contacts {
         return self.memberList;
     }
 
+    @action filter(text = '') {
+        let list = self.memberList.filter(e => (e.PYQuanPin + '').toLowerCase().indexOf(pinyin.letter(text.toLocaleLowerCase())) > -1);
+
+        if (!self.showGroup) {
+            list = list.filter(e => {
+                return !(e.ContactFlag === 3 && e.SnsFlag === 0);
+            })
+        }
+
+        self.filtered = {
+            query: text,
+            result: list.length ? self.group(list) : [],
+        };
+    }
 }
+
+const self = new Contacts();
+export default self;

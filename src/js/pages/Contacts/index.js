@@ -3,13 +3,13 @@ import { observer, inject } from 'mobx-react';
 import clazz from 'classname';
 import rendomColor from 'randomcolor';
 
-import classes from './style';
+import classes from './style.css';
 
-@inject(stores => {
+@inject(stores => ({
     loading: stores.contacts.loading,
     filtered: stores.contacts.filtered,
     getList: stores.contacts.getList
-})
+}))
 
 @observer
 export default class Contacts extends Component {
@@ -33,7 +33,7 @@ export default class Contacts extends Component {
                             bottom: 0,
                             height: 4,
                             width: '100%',
-                            background: randomColor();
+                            background: randomColor()
                         }}
                         />
                     </div>    
@@ -72,28 +72,27 @@ export default class Contacts extends Component {
                 </div>
             )
         }
+        return (
+            <div className={classes.container}>
+                {
+                    this.props.loading && <Loader show={true} />
+                }
+                <div className={classes.column}>
+                    {
+                        this.renderColumns(result, 0)
+                    }
+                </div>
+                <div className={classes.column}>
+                    {
+                        this.renderColumns(result, 1)
+                    }
+                </div>
+                <div className={classes.column}>
+                    {
+                        this.renderColumns(result, 2)
+                    }
+                </div>
+            </div>
+        )
     }
-
-    return (
-        <div className={classes.container}>
-            {
-                this.props.loading && <Loader show={true} />
-            }
-            <div className={classes.column}>
-                {
-                    this.renderColumns(result, 0)
-                }
-            </div>
-            <div className={classes.column}>
-                {
-                    this.renderColumns(result, 1)
-                }
-            </div>
-            <div className={classes.column}>
-                {
-                    this.renderColumns(result, 2)
-                }
-            </div>
-        </div>
-    )
 }

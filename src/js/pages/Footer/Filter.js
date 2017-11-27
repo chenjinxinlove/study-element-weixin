@@ -2,7 +2,7 @@ import React ,{ Component } from 'react';
 import { inject } from 'mobx-react';
 
 import classes from './style.css';
-import Switch from 'components/Switch';
+import Switch from '../../components/Switch';
 
 @inject(stores => ({
     filter: stores.contacts.filter,

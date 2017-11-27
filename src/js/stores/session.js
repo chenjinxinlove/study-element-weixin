@@ -1,8 +1,7 @@
 import axios from 'axios';
-import default, { observable, action } from 'mobx';
+import { observable, action } from 'mobx';
 
-import storage from 'utils/storage';
-import { objectAssign } from 'mobx/lib/utils/utils';
+import storage from '../utils/storage.js';
 
 class Session {
     @observable auth;

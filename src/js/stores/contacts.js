@@ -1,19 +1,17 @@
 import { observable, action } from 'mobx';
-import axios from 'axios';
 import pinyin from 'han';
 
-import storage from 'utils/storage';
-import { objectAssign } from 'mobx/lib/utils/utils';
+import storage from '../utils/storage';
 
 class Contacts {
     @observable loading = false;
     @observable showGroup = true;
     @observable filtered = {
         query: '',
-        result: [].
+        result: []
     };
 
-    memberList:
+    memberList;
 
     @action group(list) {
         let mappings = {};
@@ -40,7 +38,7 @@ class Contacts {
             })
         }
 
-        sored.sort((a, b) => a.prefix.charCodeAt() = b.prefix.charCodeAt());
+        sored.sort((a, b) => a.prefix.charCodeAt() - b.prefix.charCodeAt());
         return sorted;
 
     }

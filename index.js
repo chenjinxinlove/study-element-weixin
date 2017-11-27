@@ -19,7 +19,7 @@ const createMainWindow = () => {
             scrollBounce: true
         }
     });
-
+    mainWindow.openDevTools();
     mainWindowState.manage(mainWindow);
 
     mainWindow.loadURL(`file://${__dirname}/src/index.html`);

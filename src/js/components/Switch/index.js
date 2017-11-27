@@ -1,7 +1,7 @@
 import  React, { Component } from 'react';
 
-import blacklist from 'utils/blacklist';
-import './style';
+import blacklist from '../../utils/blacklist';
+import './style.css';
 export default class Switch extends Component {
     render() {
         return (

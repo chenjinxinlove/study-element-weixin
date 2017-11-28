@@ -1,16 +1,17 @@
-import React, {Component} from 'react';
+
+import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import clazz from 'classname';
-import rendomColor from 'randomcolor';
+import randomColor from 'randomcolor';
 
 import classes from './style.css';
+import Loader from 'components/Loader';
 
 @inject(stores => ({
     loading: stores.contacts.loading,
     filtered: stores.contacts.filtered,
-    getList: stores.contacts.getList
+    getList: stores.contacts.getList,
 }))
-
 @observer
 export default class Contacts extends Component {
     componentWillMount() {
@@ -18,7 +19,7 @@ export default class Contacts extends Component {
     }
 
     renderColumns(data, index) {
-        let list = data.filter((e, i) => i % 3 === index);
+        var list = data.filter((e, i) => i % 3 === index);
 
         return list.map((e, index) => {
             return (
@@ -26,52 +27,53 @@ export default class Contacts extends Component {
                     <div className={classes.header}>
                         <label>{e.prefix}</label>
 
-                        <span>{e.list.length}  人 </span>
-                        <span style = {{
+                        <span>{e.list.length} 好友</span>
+                        <span style={{
                             position: 'absolute',
                             left: 0,
                             bottom: 0,
                             height: 4,
                             width: '100%',
-                            background: randomColor()
-                        }}
-                        />
-                    </div>    
+                            background: randomColor(),
+                        }} />
+                    </div>
+
                     <div className={classes.list}>
                         {
                             e.list.map((e, index) => {
                                 return (
-                                    <div className={classes.item} key={index} >
+                                    <div className={classes.item} key={index}>
                                         <div className={classes.avatar}>
-                                            <img src={e.HeadImgUrl}/>
+                                            <img src={e.HeadImgUrl} />
                                         </div>
                                         <div className={classes.info}>
-                                            <p className={classes.username} dangerouslySetInnerHTML={{_html: e.NickName}}/>
-                                            <p className={classes.signatures} dangerouslySetInnerHTML={{_html: e.Signature || '没有签名'}}/>
+                                            <p className={classes.username} dangerouslySetInnerHTML={{__html: e.NickName}} />
+                                            <p className={classes.signature} dangerouslySetInnerHTML={{__html: e.Signature || 'No Signature'}} />
                                         </div>
                                     </div>
-                                )
+                                );
                             })
-                        }        
+                        }
                     </div>
-                </div>    
-            )
-        })
+                </div>
+            );
+        });
     }
 
     render() {
-        let { query, result } = this.props.filtered;
+        var { query, result } = this.props.filtered;
 
-        if(query && result.length === 0) {
+        if (query && result.length === 0) {
             return (
                 <div className={clazz(classes.container, classes.notfound)}>
                     <div className={classes.inner}>
-                        <img src="assets/images/crash.png"/>
-                        <h1>{query}不能发现匹配的人</h1>
+                        <img src="assets/images/crash.png" />
+                        <h1> '{query}'找不到任何匹配的人</h1>
                     </div>
                 </div>
-            )
+            );
         }
+
         return (
             <div className={classes.container}>
                 {
@@ -93,6 +95,6 @@ export default class Contacts extends Component {
                     }
                 </div>
             </div>
-        )
+        );
     }
 }

@@ -6,7 +6,7 @@ import { Router, hashHistory } from 'react-router';
 import ElectronCookies from '@exponent/electron-cookies';
 
 import './global.css';
-import 'fonts/icomoon/style.css';
+import './assets/fonts/icomoon/style.css';
 import getRoutes from './js/routes';
 import stores from './js/stores';
 

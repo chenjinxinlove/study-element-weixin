@@ -1,43 +1,46 @@
+
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 
 import classes from './style.css';
+
 @inject(stores => ({
     avatar: stores.session.avatar,
     code: stores.session.code,
-    getCode: stores.session.getCode
+    getCode: stores.session.getCode,
 }))
-
 @observer
 export default class Login extends Component {
-    componentWillMount () {
+    componentWillMount() {
         this.props.getCode();
     }
 
-    renderUser () {
+    renderUser() {
         return (
             <div>
                 {
-                    <img src={this.props.avatar}/>
+                    <img src={this.props.avatar} />
                 }
-                <p>扫码成功</p>
-                <p>请在手机上确认扫码</p>
+
+                <p>扫描成功</p>
+                <p>确认登录移动微信</p>
             </div>
-        )
+        );
     }
 
-    renderCode () {
-        let {code} = this.props;
+    renderCode() {
+        var { code } = this.props;
 
         return (
             <div>
                 {
-                    code && (<img src={`https://login.weixin.qq.com/qrcode/${code}`}/>)
+                    code && (<img src={`https://login.weixin.qq.com/qrcode/${code}`} />)
                 }
-                <p>扫码登录在微信</p>
-                <p></p>
+
+                <p>登录微信扫描</p>
+                <p>登录手机在Web上使用微信</p>
             </div>
-        )
+        );
     }
 
     render() {
@@ -49,6 +52,6 @@ export default class Login extends Component {
                     }
                 </div>
             </div>
-        )
+        );
     }
 }

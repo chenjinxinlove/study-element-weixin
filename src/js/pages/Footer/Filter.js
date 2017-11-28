@@ -1,16 +1,17 @@
-import React ,{ Component } from 'react';
+
+import React, { Component } from 'react';
 import { inject } from 'mobx-react';
 
 import classes from './style.css';
-import Switch from '../../components/Switch';
+import Switch from 'components/Switch';
 
 @inject(stores => ({
     filter: stores.contacts.filter,
     showGroup: stores.contacts.showGroup,
-    toggleGroup: stores.contacts.toggleGroup
+    toggleGroup: stores.contacts.toggleGroup,
 }))
-
 export default class Filter extends Component {
+    // Improve filter performance
     timer;
 
     doFilter(text = '') {
@@ -19,7 +20,7 @@ export default class Filter extends Component {
         clearTimeout(this.timer);
         this.timer = setTimeout(() => {
             this.props.filter(text);
-        }, 300)
+        }, 300);
     }
 
     handleShowGroup(e) {
@@ -30,15 +31,15 @@ export default class Filter extends Component {
     render() {
         return (
             <div className={classes.filter}>
-                <input type='text' ref='filter' placeholder='搜索' onInput={e => this.doFilter(e.target.value)}/>
+                <input type="text" ref="filter" placeholder="搜索" onInput={e => this.doFilter(e.target.value)} />
 
                 <div className={classes.action}>
-                    <label htmlFor='showGroup'>
-                        <span className={classes.options}>显示组</span>
-                        <Switch id='showGroup' defaultChecked={this.props.showGroup} onClick={e=>this.handleShowGroup(e)}></Switch>
+                    <label htmlFor="showGroup">
+                        <span className={classes.options}>展示分组</span>
+                        <Switch id="showGroup" defaultChecked={this.props.showGroup} onClick={e => this.handleShowGroup(e)} />
                     </label>
                 </div>
             </div>
-        )
+        );
     }
 }

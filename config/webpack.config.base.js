@@ -71,6 +71,10 @@ export default {
                 test: /\.svg(\?.*)?$/,
                 loader: 'url-loader?prefix=fonts/&name=[path][name].[ext]&limit=40000&mimetype=image/svg+xml',
             },
+            {
+                test: /\.(png|jpg|jpeg|gif)$/,
+                loader: 'url-loader?limit=40000&name=images/[name].[ext]',
+            },
         ]
     },
 

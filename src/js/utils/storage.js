@@ -1,3 +1,4 @@
+
 import storage from 'electron-json-storage';
 
 export default {
@@ -22,6 +23,6 @@ export default {
                     resolve(data);
                 }
             });
-        })
+        });
     }
 };

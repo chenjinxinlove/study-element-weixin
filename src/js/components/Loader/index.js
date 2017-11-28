@@ -1,11 +1,11 @@
-import React, {Component, PropTypes} from 'react';
-import Transition form 'react-addons-css-transition-group';
+
+import React, { Component, PropTypes } from 'react';
+import Transition from 'react-addons-css-transition-group';
 import clazz from 'classname';
 
-import './loader.css';
+import './style.css';
 
-
-export default class Loader extends Comment {
+export default class Button extends Component {
     static PropTypes = {
         show: PropTypes.bool
     };
@@ -17,20 +17,20 @@ export default class Loader extends Comment {
 
         return (
             <div className={clazz('Loader', this.props.className)}>
-                <svg>
-                    <circle className='Loader-path' cx = '50' cy = '50' r = '20' fill='none' strokeWidth = '5' strokeMiterlimit = '10' ></circle>
-                </svg>    
+                <svg className="Loader-circular">
+                    <circle className="Loader-path" cx="50" cy="50" r="20" fill="none" strokeWidth="5" strokeMiterlimit="10" />
+                </svg>
             </div>
-        )
+        );
     }
 
     render() {
-        return {
+        return (
             <div>
-                <Transition transitionName='Loader' transitionEnterTimeout={200} transitionLeaveTimeout={200}>
+                <Transition transitionName="Loader" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
                     {this.renderContent()}
                 </Transition>
             </div>
-        }
+        );
     }
 }

@@ -1,17 +1,17 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn
+  C:\Program Files\nodejs\node.exe C:\Users\chen\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js
 
 PATH: 
-  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin
+  C:\Program Files\ImageMagick-7.0.1-Q16;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\instantclient_12_1;C:\WINDOWS\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\DevDesktop\tools;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\OpenVPN\bin;J:\php\php\php-7.0.12-nts\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\TortoiseSVN\bin;C:\Users\chen\AppData\Local\Programs\Python\Python35\Scripts\;C:\Users\chen\AppData\Local\Programs\Python\Python35\;C:\Users\chen\AppData\Local\atom\bin;C:\Users\chen\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Users\chen\AppData\Roaming\npm;C:\Program Files\Docker Toolbox;C:\Users\chen\AppData\Local\now-cli
 
 Yarn version: 
-  0.20.3
+  0.16.1
 
 Node version: 
-  8.1.2
+  8.1.0
 
 Platform: 
-  darwin x64
+  win32 x64
 
 npm manifest: 
   {
@@ -91,6 +91,9 @@ npm manifest:
   }
 
 yarn manifest: 
+  No manifest
+
+bower manifest: 
   No manifest
 
 Lockfile: 
@@ -5518,7 +5521,4 @@ Lockfile:
       fd-slicer "~1.0.1"
 
 Trace: 
-  Error: connect ETIMEDOUT 104.16.62.173:443
-      at Object.exports._errnoException (util.js:1016:11)
-      at exports._exceptionWithHostPort (util.js:1039:20)
-      at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1138:14)
+  Error: https://registry.yarnpkg.com/cross-env/-/cross-env-5.0.1.tgz: EEXIST: file already exists, mkdir 'C:\Users\chen\AppData\Local\Yarn\cache\npm-cross-env-5.0.1'

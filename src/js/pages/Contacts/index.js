@@ -6,6 +6,7 @@ import randomColor from 'randomcolor';
 
 import classes from './style.css';
 import Loader from 'components/Loader';
+import Avatar from 'components/Avatar';
 
 @inject(stores => ({
     loading: stores.contacts.loading,

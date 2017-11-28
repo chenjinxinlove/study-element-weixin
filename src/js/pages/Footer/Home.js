@@ -6,7 +6,7 @@ import classes from './style.css';
 export default class Input extends Component {
     render() {
         return (
-            <div className={classes.input}>
+            <div className={classes.home}>
                 <input type="text" placeholder="发送消息" />
 
                 <div className={classes.action}>

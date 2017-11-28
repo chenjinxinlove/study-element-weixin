@@ -4,11 +4,14 @@ import axios from 'axios';
 import { observable, action } from 'mobx';
 
 import storage from 'utils/storage';
+import home from './home';
 
 class Session {
+    @observable loading = false;
     @observable auth;
     @observable code;
     @observable avatar;
+    @observable user;
 
     @action async getCode() {
         var response = await axios.get('https://login.wx.qq.com/jslogin?appid=wx782c26e4c19acffb&redirect_uri=https%3A%2F%2Fwx.qq.com%2Fcgi-bin%2Fmmwebwx-bin%2Fwebwxnewloginpage&fun=new&lang=en_US&_=1499075647264');
@@ -59,6 +62,7 @@ class Session {
 
                 self.auth = auth;
                 await storage.set('auth', auth);
+                await self.initUser();
                 break;
 
             case 201:
@@ -66,6 +70,10 @@ class Session {
                 self.avatar = window.userAvatar;
                 self.check();
                 break;
+            
+            case 400:
+                window.location.reload();
+                return;
 
             default:
                 // Continue call server and waite
@@ -74,6 +82,8 @@ class Session {
     }
 
     @action async initUser() {
+        self.loading = true;
+
         var response = await axios.post(`/cgi-bin/mmwebwx-bin/webwxinit?r=${-new Date()}&pass_ticket=${self.auth.passTicket}`, {
             BaseRequest: {
                 Sid: self.auth.wxsid,
@@ -82,7 +92,26 @@ class Session {
             }
         });
 
-        return (self.user = response.data);
+        await axios.post(`/cgi-bin/mmwebwx-bin/webwxstatusnotify?lang=en_US&pass_ticket=${self.auth.passTicket}`, {
+            BaseRequest: {
+                Sid: self.auth.wxsid,
+                Uin: self.auth.wxuin,
+                Skey: self.auth.skey,
+            },
+            ClientMsgId: +new Date(),
+            Code: 3,
+            FromUserName: response.data.User.UserName,
+            ToUserName: response.data.User.UserName,
+        });
+
+        self.user = response.data;
+        self.user.ContactList.map(e => {
+            e.HeadImgUrl = `${axios.defaults.baseURL}${e.HeadImgUrl}`.replace(/\/+/g, '/');
+        });
+        await home.loadChats(self.user.ChatSet);
+        self.loading = false;
+
+        return self.user;
     }
 
     @action async hasLogin() {

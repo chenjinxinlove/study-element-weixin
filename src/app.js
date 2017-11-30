@@ -15,8 +15,8 @@ ElectronCookies.enable({
     origin: 'https://wx.qq.com',
 });
 
-stores.session.hasLogin();
-stores.session.init();
+stores.session.hasLogin(); 
+stores.settings.init();
 
 render(
     <Provider {...stores}>

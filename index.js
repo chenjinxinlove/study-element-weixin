@@ -36,7 +36,7 @@ const createMainWindow = () => {
         event.preventDefault();
 
         console.log(url);
-    })
+    });
 
     mainWindow.on('closed', () => {
         mainWindow = null;
@@ -47,7 +47,7 @@ const createMainWindow = () => {
         mainWindow.setResizable(true);
         mainWindow.setSize(mainWindowState.width, mainWindowState.height);
         mainWindowState.manage(mainWindow);
-    })
+    });
 };
 
 app.on('ready', createMainWindow);

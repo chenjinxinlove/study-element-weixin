@@ -2,7 +2,6 @@ import { observable, action } from 'mobx';
 import axios from 'axios';
 
 import storage from 'utils/storage';
-import { observer } from '../../../node_modules/._mobx-react@4.3.5@mobx-react';
 
 class UserInfo {
     @observable show = false;

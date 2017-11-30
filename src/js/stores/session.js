@@ -63,6 +63,7 @@ class Session {
                 self.auth = auth;
                 await storage.set('auth', auth);
                 await self.initUser();
+                self.keepalive();
                 break;
 
             case 201:
@@ -113,7 +114,47 @@ class Session {
 
         return self.user;
     }
+    async keepalive() {
+        var auth = self.auth;
+        var response = await axios.post(`cgi-bin/mmwebwx-bin/webwxsync?sid=${auth.wxsid}&skey=${auth.skey}&lang=en_US&pass_ticket=${auth.passTicket}`, {
+            BaseRequest: {
+                Sid: auth.wxsid,
+                Uin: auth.wxuin,
+                Skey: auth.skey,
+            },
+            SyncKey: self.user.SyncKey,
+            rr: -new Date(),
+        });
+        var syncKey = response.data.SyncKey.List.map(e => `${e.Key}_${e.Val}`).join('|');
+        var host = axios.defaults.baseURL.replace('//', '//webpush.');
+        var loop = async() => {
+            var response = await axios.get(`${host}cgi-bin/mmwebwx-bin/synccheck`, {
+                params: {
+                    r: +new Date(),
+                    sid: auth.wxsid,
+                    uin: auth.wxuin,
+                    skey: auth.skey,
+                    synckey: syncKey,
+                }
+            });
 
+            eval(response.data);
+            if (+window.synccheck.retcode === 0) {
+                if ([0, 2].includes(+window.synccheck.selector)) {
+                    // Do next sync keep your wechat alive
+                    loop();
+                }
+            } else {
+                console.err(window.synccheck);
+            }
+        };
+
+        response.data.AddMsgList.map(async e => {
+            await home.loadChats(e.StatusNotifyUserName);
+        });
+
+        loop();
+    }
     @action async hasLogin() {
         var auth = await storage.get('auth');
 

@@ -6,8 +6,7 @@ import { ipcRenderer } from 'electron';
 import Header from './Header';
 import Footer from './Footer';
 import Login from './Login';
-import UseInfo from './UserInfo';
-import { userInfo } from 'os';
+import UserInfo from './UserInfo';
 
 @inject(stores => ({
     isLogin: () => !!stores.session.auth,

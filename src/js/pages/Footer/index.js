@@ -38,7 +38,7 @@ export default class Footer extends Component {
 
                 <div className={classes.right}>
                     {
-                        React.createElement(component);
+                        React.createElement(component)
                     }
                 </div>
             </footer>

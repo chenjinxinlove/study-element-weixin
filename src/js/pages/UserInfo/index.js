@@ -25,7 +25,7 @@ import { Modal, ModalBody } from 'components/Modal';
 @observer
 export default class UserInfo extends Component {
     state = {
-        showEdit: fasle,
+        showEdit: false,
     };
 
     toggleEdit(showEdit = !this.state.showEdit) {

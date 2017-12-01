@@ -19,17 +19,17 @@ export default class Footer extends Component {
         return (
             <footer className={classes.footer}>
                 <nav>
-                    <Link className='Link' tp='/'> 
+                    <Link className='Link' to='/'> 
                         <span className={pathname === '/' && classes.active}>
                             <i className="icon-ion-android-chat" />
                         </span>
                     </Link>
-                    <Link className='Link' tp='/contacts'> 
-                        <span className={pathanme === '/contacts' && classes.active}>
+                    <Link className='Link' to='/contacts'> 
+                        <span className={pathname === '/contacts' && classes.active}>
                             <i className="icon-ion-ios-book-outline" />
                         </span>
                     </Link>
-                    <Link className='Link' tp='/settings'> 
+                    <Link className='Link' to='/settings'> 
                         <span className={pathname === '/settings' && classes.active}>
                             <i className="icon-ion-android-more-vertical" />
                         </span>

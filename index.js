@@ -22,7 +22,7 @@ const createMainWindow = () => {
             scrollBounce: true
         }
     });
-    // mainWindow.openDevTools();
+    mainWindow.openDevTools();
     mainWindow.setSize(350, 460);
 
     mainWindow.loadURL(`file://${__dirname}/src/index.html`);

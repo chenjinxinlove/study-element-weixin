@@ -12,6 +12,7 @@ import Avatar from 'components/Avatar';
     loading: stores.contacts.loading,
     filtered: stores.contacts.filtered,
     getList: stores.contacts.getList,
+    showUserinfo: stores.userinfo.toggle
 }))
 @observer
 export default class Contacts extends Component {
@@ -43,13 +44,13 @@ export default class Contacts extends Component {
                         {
                             e.list.map((e, index) => {
                                 return (
-                                    <div className={classes.item} key={index}>
+                                    <div className={classes.item} key={index} onClick={() => this.props.showUserinfo(true, e)}>
                                         <div className={classes.avatar}>
-                                            <img src={e.HeadImgUrl} />
+                                            <Avatar style={{ width: 32, height: 32 }} src={e.HeadImgUrl} />
                                         </div>
                                         <div className={classes.info}>
-                                            <p className={classes.username} dangerouslySetInnerHTML={{__html: e.NickName}} />
-                                            <p className={classes.signature} dangerouslySetInnerHTML={{__html: e.Signature || 'No Signature'}} />
+                                            <p className={classes.username} dangerouslySetInnerHTML={{__html: e.NickName || e.NickName}} />
+                                            <p className={classes.signature} dangerouslySetInnerHTML={{__html: e.Signature || '没有签名'}} />
                                         </div>
                                     </div>
                                 );
@@ -77,24 +78,26 @@ export default class Contacts extends Component {
 
         return (
             <div className={classes.container}>
-                {
-                    this.props.loading && <Loader show={true} />
-                }
-                <div className={classes.column}>
-                    {
-                        this.renderColumns(result, 0)
-                    }
+               
+                <Loader show={ this.props.loading} fullscreen={true} />
+                <div className={classes.columns}>
+                    <div className={classes.column}>
+                        {
+                            this.renderColumns(result, 0)
+                        }
+                    </div>
+                    <div className={classes.column}>
+                        {
+                            this.renderColumns(result, 1)
+                        }
+                    </div>
+                    <div className={classes.column}>
+                        {
+                            this.renderColumns(result, 2)
+                        }
+                    </div>
                 </div>
-                <div className={classes.column}>
-                    {
-                        this.renderColumns(result, 1)
-                    }
-                </div>
-                <div className={classes.column}>
-                    {
-                        this.renderColumns(result, 2)
-                    }
-                </div>
+               
             </div>
         );
     }

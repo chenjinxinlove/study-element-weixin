@@ -10,7 +10,7 @@ import Switch from 'components/Switch';
     showOnTray: stores.settings.showOnTray,
     setShowOnTray: stores.settings.setShowOnTray,
     showNotification: stores.settings.showNotification,
-    setShowNotification: stotres.settings.setShowNotification,
+    setShowNotification: stores.settings.setShowNotification,
     startup: stores.settings.startup,
     setStartup: stores.settings.setStartup,
 

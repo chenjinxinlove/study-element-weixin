@@ -48,6 +48,10 @@ export default class Chats extends Component {
 
             case 3:
                 return '[Image]';
+            case 34: 
+                return '[Voice]';
+            case 47: 
+                return ['Emoji'];        
         }
     }
 

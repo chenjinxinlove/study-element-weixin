@@ -5,9 +5,23 @@ import axios from 'axios';
 import storage from 'utils/storage';
 import contacts from './contacts';
 import session from './session';
+import Contacts from '../pages/Contacts/index';
 
 function unique(arr) {
     return [... new Set([...arr])]
+}
+
+function parseXml(text) {
+    let string = message.Content.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+    let matchs = string.match(/(\w+)="([^\s]+)"/g);
+    let res = [];
+    matchs.map(e => {
+        var kv = e.replace(/"/g, '').split('=');
+
+        res[kv[0]] = kv[1];
+    });
+
+    return res;
 }
 
 async function resolveMessage(message) {
@@ -15,20 +29,22 @@ async function resolveMessage(message) {
 
     switch (message.MsgType) {
         case 3:
-            let string = message.Content.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
-            let matchs = string.match(/(\w+)="([^\s]+)"/g);
-            let images = {};
-
-            matchs.map(e => {
-                var kv = e.replace(/"/g, '').split('=');
-
-                images[kv[0]] = kv[1];
-            });
-
+            let images = parseXml(message.Content);
             images.src = `${axios.defaults.baseURL}/cgi-bin/mmwebwx-bin/webwxgetmsgimg?&MsgID=${message.MsgId}&skey=${auth.skey}`.replace(/\/+/g, '/');
             message.images = images;
             break;
-    }
+        case 34:
+            let voice = parseXml(message.Content);
+            voice.src = `${axios.defaults.baseURL}/cgi-bin/mmwebwx-bin/webwxgetvoice?&MsgID=${message.MsgId}&skey=${auth.skey}`.replace(/\/+/g, '/');
+            message.voice = voice;
+            break;
+        case 47:
+            if (!message.Content) break;
+            
+            let emoji = parseXml(message.Content);
+            message.emoji = emoji;
+            break;
+        }
     return message;
 }
 

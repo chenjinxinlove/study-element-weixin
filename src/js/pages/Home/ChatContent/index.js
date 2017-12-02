@@ -25,6 +25,23 @@ export default class ChatContent extends Component {
             case 3:
                 let images = message.images;
                 return `<img src="${images.src}">`;
+            case 34:
+                let voice = message.voice;
+                return `
+                    <div style="width: ${40 + 7 * message.VoiceLength / 1000}px" data-voice="${voice.src}">
+                        <i class="icon-ion-android-volume-up"></i>
+                    </div>
+                `;
+            case 47:
+                let emoji = message.emoji;
+                
+                if (emoji) {
+                    return `<img src="${emoji.cdnurl}"/>`;
+                }
+
+                return `<div class="${classes.invalidEmoji}"> 
+                    <span>发送的是一个表情，请在客户端查看</sapn>
+                </div>`
         }
     }
 
@@ -34,7 +51,9 @@ export default class ChatContent extends Component {
                 <div className={clazz(classes.message, {
                     [classes.isme]: e.isme,
                     [classes.isText]: e.MsgType === 1,
-                    [classes.isImage]: e.MsgType === 3
+                    [classes.isImage]: e.MsgType === 3,
+                    [classes.isEmoji]: e.MsgType === 47,
+                    [classes.isVoice]: e.MsgType === 34
                 })} key={index}>
                     <div>   
                         <Avatar src={e.isme ? e.HeadImgUrl : from.HeadImgUrl} className={classes.avatar} onClick={e => this.props.showUserinfo()} />

@@ -4,8 +4,7 @@ import Transition from 'react-addons-css-transition-group';
 import clazz from 'classname';
 
 import { on, off } from 'utils/event';
-import './style.css';
-import { Transform } from 'stream';
+import './style.global.css';
 
 class TransitionPortal extends Component {
     ele;
@@ -32,12 +31,12 @@ class TransitionPortal extends Component {
 class ModalBody extends Component {
     render() {
         return (
-            <Transition transitionName='fade' transitionEnterTimeout={1000} transitionLeaveTimeout={1000} >
+            <Transition transitionName="fade" transitionEnterTimeout={1000} transitionLeaveTimeout={1000} >
                 <div className={clazz('Modal-body', this.props.className)} style={this.props.style}>
                     { this.props.children }
                 </div>
             </Transition>
-        )
+        );
     }
 }
 
@@ -47,7 +46,7 @@ class ModalHeader extends Component {
             <div className={clazz('Modal-header', this.props.className)}>
                 {this.props.children}
             </div>
-        )
+        );
     }
 }
 
@@ -57,7 +56,7 @@ class ModalFooter extends Component {
             <div className={clazz('Model-footer', this.props.className)}>
                 {this.props.children}
             </div>
-        )
+        );
     }
 }
 

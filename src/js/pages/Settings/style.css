@@ -1,4 +1,4 @@
-:local
+
 .container {
     display: flex;
     justify-content: space-between;
@@ -12,7 +12,7 @@
     }
 }
 
-:local
+
 .column {
     width: 50%;
 
@@ -35,7 +35,7 @@
     }
 }
 
-:local 
+ 
 .plugin {
     display: flex;
     justify-content: space-between;
@@ -57,7 +57,7 @@
     }
 }
 
-:local
+
 .version {
     display: inline-block;
     margin-left: 24px;
@@ -65,7 +65,7 @@
     color: #9e9e9e;
 }
 
-:local
+
 .description {
     font: 12px;
     color: #9b9b9b;

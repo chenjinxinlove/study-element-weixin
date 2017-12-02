@@ -27,8 +27,9 @@ async function resolveMessage(message) {
 
             images.src = `${axios.defaults.baseURL}/cgi-bin/mmwebwx-bin/webwxgetmsgimg?&MsgID=${message.MsgId}&skey=${auth.skey}`.replace(/\/+/g, '/');
             message.images = images;
-            return message;
+            break;
     }
+    return message;
 }
 
 class Home {
@@ -76,12 +77,26 @@ class Home {
     @action async addMessage(message) {
         let from = message.FromUserName;
         let messages = Object.assign({}, self.messages);
-        let list = messages[from];
+        let list = messages[from].slice();
 
-        if (list) {
+        if (Array.isArray(list)) {
+
+            let index = self.chats.findIndex(e => e.UserName === from );
+            let chats = [];
+
+            if (index > 0) {
+                chats = [
+                    self.chats.slice(index, index + 1),
+                    ...self.chats.slice(0, index),
+                    ...self.chats.slice(index + 1, self.chats.length)
+                ];
+
+                self.chats.replace(chats);
+            }
+
             if(!list.find(e => e.NewMsgId === message.NewMsgId)) {
                 message = await resolveMessage(message);
-                list.push(message);
+                list.push(await resolveMessage(message));
             } else {
                 let user = self.users[from];
 
@@ -92,10 +107,12 @@ class Home {
             }
         }
 
-        if (self.user.UserName === from ) {
-            list.unread = list.length;
-        } else {
-            list.unread = 0;
+        if (list.length) {
+            if (self.user.UserName === from) {
+                list.unread = list.length;
+            }
+
+            messages[from] = list;
         }
 
         self.messages = messages;

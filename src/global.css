@@ -1,9 +1,5 @@
 
-::-webkit-scrollbar {
-    width: 0px;
-}
-
-:global * {
+* {
     user-select: none;
 }
 
@@ -3239,4 +3235,7 @@ label {
 
 .emoji_face .emoji176 {
     background-position: -350px -350px
+}
+::-webkit-scrollbar {
+    width: 0px;
 }

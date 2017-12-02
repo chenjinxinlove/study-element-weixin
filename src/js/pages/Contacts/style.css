@@ -3,7 +3,7 @@
     --column-width: 274px;
 }
 
-:local
+
 .columns {
     display: flex;
     padding-bottom: 24px;
@@ -12,7 +12,7 @@
     justify-content: space-between;
 }
 
-:local
+
 .notfound {
     display: flex;
     height: 100vh;
@@ -30,7 +30,7 @@
     }
 }
 
-:local
+
 .inner {
     text-align: center;
 
@@ -40,12 +40,12 @@
     }
 }
 
-:local
+
 .column {
     width: var(--column-width);
 }
 
-:local
+
 .group {
     width: var(--column-width);
     padding: 8px 0;
@@ -53,7 +53,7 @@
     box-shadow: 0 0 10px 0 rgba(119, 119, 119, 50%);
 }
 
-:local
+
 .header {
     position: relative;
     width: 140px;
@@ -80,7 +80,7 @@
     }
 }
 
-:local
+
 .item {
     display: flex;
     height: 40px;
@@ -103,20 +103,20 @@
     }
 }
 
-:local .avatar,
-:local .info {
+ .avatar,
+ .info {
     display: inline-block;
 }
 
-:local .username,
-:local .signature {
+ .username,
+ .signature {
     max-width: 200px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-:local
+
 .username {
     font-family: 'Helvetica';
     font-size: 14px;
@@ -125,7 +125,7 @@
     margin-bottom: 4px;
 }
 
-:local
+
 .signature {
     font-family: 'Helvetica';
     font-size: 12px;

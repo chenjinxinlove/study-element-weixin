@@ -47,7 +47,7 @@ label {
 }
 
 .emoji {
-    background: url(./assets/images/emoji.png) 0 0 no-repeat;
+    background: url(./assets/images/emoji-map.png) 0 0 no-repeat;
     width: 20px;
     height: 20px;
     display: -moz-inline-stack;

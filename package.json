@@ -92,7 +92,7 @@
     "react": "15.6.2",
     "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "15.6.2",
-    "react-router": "^3.2.0",
+    "react-router": "3.2.0",
     "tmp": "0.0.33"
   },
   "devDependencies": {
